@@ -11,16 +11,8 @@
 
 
   <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="<?php echo get_theme_file_uri('vendor/jquery/jquery.min.js');?>"></script>
-  <script src="<?php echo get_theme_file_uri('vendor/bootstrap/js/bootstrap.min.js');?>"></script>
 
-  <script src="<?php echo get_theme_file_uri('assets/js/isotope.min.js');?>"></script>
-  <script src="<?php echo get_theme_file_uri('assets/js/owl-carousel.js');?>"></script>
-  <script src="<?php echo get_theme_file_uri('assets/js/wow.js');?>"></script>
-  <script src="<?php echo get_theme_file_uri('assets/js/tabs.js');?>"></script>
-  <script src="<?php echo get_theme_file_uri('assets/js/popup.js');?>"></script>
-  <script src="<?php echo get_theme_file_uri('assets/js/custom.js');?>"></script>
+  <?php wp_footer(); ?>
 
   <script>
     function bannerSwitcher() {
