@@ -78,4 +78,8 @@ if(!function_exists('travelcompanytheme')){
 } 
 
 
+// Included Functions File
+require_once('inc/custom-travel.php');
+
+
 ?>
