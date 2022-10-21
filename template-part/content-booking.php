@@ -12,41 +12,93 @@
         <div class="col-lg-8">
           <div class="items">
             <div class="row">
-              <div class="col-lg-12">
+
+              <?php
+                    // the query (for Post Loop)
+
+                    $args = array(
+                        'post_type' => 'customtravel'
+                    );
+
+                    $the_query = new WP_Query( $args ); ?>
+
+                    <?php if ( $the_query->have_posts() ) : ?>
+
+                        <!-- pagination here -->
+
+                        <!-- the loop -->
+                        <?php while ( $the_query->have_posts() ) : $the_query->the_post();
+                        $image_url;
+                        // Image Location.
+                        if ( has_post_thumbnail() ) {
+                            $image_url = get_the_post_thumbnail_url(get_the_ID());
+                        }
+                        else {
+                            $image_url = get_bloginfo('stylesheet_directory') .'/img/about.jpg"';
+                        }
+
+                        ?>
+
+                        <div class="col-lg-12">
+                          <div class="item">
+                            <div class="row">
+                              <div class="col-lg-4 col-sm-5">
+                                <div class="image">
+                                  <img src="<?php echo $image_url; ?>" alt="">
+                                </div>
+                              </div>
+                              <div class="col-lg-8 col-sm-7">
+                                <div class="right-content">
+                                  <h4><?php the_title(); ?></h4>
+                                  <?php
+                                    $postid = $the_query->post->ID;
+
+                                    $continent = get_post_meta($postid, 'continent', true);
+                                    $population = get_post_meta($postid, 'population', true);
+                                    $area = get_post_meta($postid, 'area', true);
+                                    $income = get_post_meta($postid, 'income', true);
+                                  ?>
+                                  <span><?php echo $continent; ?></span>
+                                  <div class="main-button">
+                                    <a href="about.html">Explore More</a>
+                                  </div>
+                                  <p><?php the_content(); ?></p>
+                                  <ul class="info">
+                                    <li><i class="fa fa-user"></i> <?php echo $population; ?></li>
+                                    <li><i class="fa fa-globe"></i><?php echo $area; ?></li>
+                                    <li><i class="fa fa-home"></i><?php echo $income; ?></li>
+                                  </ul>
+                                  <div class="text-button">
+                                    <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <?php endwhile; ?>
+                        <!-- end of the loop -->
+
+                        <!-- pagination here -->
+
+                        <?php wp_reset_postdata(); ?>
+
+                    <?php else : ?>
+                        <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+                <?php endif;
+              // End the query (for Post Loop)
+
+              ?>
+
+
+              <!-- <div class="col-lg-12">
                 <div class="item">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
                       <div class="image">
-                        <img src="<?php echo get_theme_file_uri('assets/images/country-01.jpg');?>" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg-8 col-sm-7">
-                      <div class="right-content">
-                        <h4>SWITZERLAND</h4>
-                        <span>Europe</span>
-                        <div class="main-button">
-                          <a href="about.html">Explore More</a>
-                        </div>
-                        <p>Woox Travel is a professional Bootstrap 5 theme HTML CSS layout for your website. You can use this layout for your commercial work.</p>
-                        <ul class="info">
-                          <li><i class="fa fa-user"></i> 8.66 Mil People</li>
-                          <li><i class="fa fa-globe"></i> 41.290 km2</li>
-                          <li><i class="fa fa-home"></i> $1.100.200</li>
-                        </ul>
-                        <div class="text-button">
-                          <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="item">
-                  <div class="row">
-                    <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="<?php echo get_theme_file_uri('assets/images/country-02.jpg');?>" alt="">
+                        <img src="<?php echo get_theme_file_uri('');?>" alt="">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
@@ -98,7 +150,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
+
               <div class="col-lg-12">
                 <ul class="page-numbers">
                   <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
